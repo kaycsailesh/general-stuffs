@@ -54,6 +54,9 @@ planck.testbed((testbed) => {
     x += 40.0;
     groundBody.createFixture(pl.Edge(Vec2(x, 0.0), Vec2(x, 20.0)), groundFD);
 
+    x += 80.0;
+    groundBody.createFixture(pl.Edge(Vec2(x, 0.0), Vec2(x+10, 40.0)), groundFD);
+
     let bodyDef = {
         type: 'dynamic',
         position: Vec2(0, 4),
