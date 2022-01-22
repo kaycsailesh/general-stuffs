@@ -11,7 +11,8 @@ function HomeView() {
             id: '1',
             description: 'apple',
             cost: '10',
-            quantity: '100'
+            quantity: '100',
+            isTaxable: true
         }],
         activeInvoice: null
     }

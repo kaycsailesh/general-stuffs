@@ -1,12 +1,17 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {ActionConstants} from "../../constant/Action";
 import {FieldConstant, InvoiceFormConstant} from "../../constant/Constants";
 import {InvoiceContext} from "../../context/InvoiceContext";
 import {InitializeForm} from "../../services/FormService";
 
 function InvoiceFormComponent(props) {
+    console.log(props.invoiceForm)
     const [state, setState] = useState(() => InitializeForm(props))
     const dispatch = useContext(InvoiceContext);
+
+    useEffect(() => {
+        console.log(state)
+    }, [state])
 
     const errorMessage = (target) => {
         if (state[target].isDirty && state[target].hasError) {
@@ -49,7 +54,8 @@ function InvoiceFormComponent(props) {
                 id: state.id,
                 description: state.description.value,
                 cost: state.cost.value,
-                quantity: state.quantity.value
+                quantity: state.quantity.value,
+                isTaxable: state.isTaxable.value
             }
             dispatch({type: props.action, payload: payload})
             return handleReset();
@@ -58,6 +64,7 @@ function InvoiceFormComponent(props) {
     }
 
     const handleReset = () => {
+        // document.getElementById('form').reset()
         setState(JSON.parse(JSON.stringify(InvoiceFormConstant)))
         if (state.id) {
             dispatch({type: ActionConstants.CANCEL})
@@ -69,7 +76,10 @@ function InvoiceFormComponent(props) {
     }
 
     const handleChange = (e) => {
-        const {id, value} = e.target;
+        let {id, value} = e.target;
+        if (e.target.type === 'checkbox') {
+            value = e.target.checked
+        }
         const error = state[id].required && !value.length;
         setState({
             ...state,
@@ -96,22 +106,28 @@ function InvoiceFormComponent(props) {
             quantity: {
                 ...state.quantity,
                 isDirty: true
+            },
+            isTaxable: {
+                ...state.isTaxable,
+                isDirty: true
             }
         })
     }
 
     return (
         <div>
-            <form>
+            <form id={"form"}>
                 <div className="invoice-form">
                     {FieldConstant.map(field => (
-                        <div key={field.id} className={`input ${field.className}`}>
+                        <div key={field.id} className={`${field.className}`}>
                             <label>{field.label}</label>
                             <input
                                 id={field.id}
+                                key={field.id}
                                 placeholder={field.label}
                                 type={field.type}
                                 onChange={handleChange}
+                                checked={state[field.id].value}
                                 value={state[field.id].value}
                             />
                             {errorMessage(field.id)}

@@ -8,7 +8,8 @@ export default function AddForm() {
         id: '',
         description: '',
         cost: '',
-        quantity: ''
+        quantity: '',
+        isTaxable: false
     }
 
     return (

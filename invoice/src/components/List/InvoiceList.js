@@ -16,11 +16,15 @@ export default function InvoiceListComponent({invoices}) {
 
     let total = 0;
     invoices.map(invoice => total += (invoice.cost * invoice.quantity))
+    let totalTaxable = 0;
+    let taxableInvoices = invoices.filter(invoice => invoice.isTaxable)
+    taxableInvoices.map(invoice => totalTaxable += (invoice.cost * invoice.quantity * 0.1))
 
-    let listComponent = InvoiceTableComponent({total, invoices})
-    if (screenSize < 600) {
-        listComponent = MobileList({total, invoices})
-    }
+
+    let listComponent = InvoiceTableComponent({total, totalTaxable, invoices})
+    // if (screenSize < 600) {
+    //     listComponent = MobileList({total, taxableTotal, invoices})
+    // }
 
     const handleInvoiceSubmit = () => {
         //Need to send the payload to API

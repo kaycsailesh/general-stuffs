@@ -1,0 +1,10 @@
+.dialog-header {
+  display: flex;
+  h1 {
+    flex-grow: 1;
+  }
+  i {
+    font-size: 24px;
+    cursor: pointer;
+  }
+}

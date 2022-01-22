@@ -1,0 +1,11 @@
+<div class="dialog-header">
+  <h1 mat-dialog-title [innerHTML]="data.title.rendered"></h1>
+  <i class="far fa-times-circle" (click)="close()"></i>
+</div>
+<div mat-dialog-content>
+  <div [innerHTML]="data.content.rendered"></div>
+</div>
+<div mat-dialog-actions>
+  <a mat-raised-button color="warn" (click)="close()">Close</a>
+  <a mat-raised-button color="primary" [href]="data.link" target="_blank">Visit Page</a>
+</div>

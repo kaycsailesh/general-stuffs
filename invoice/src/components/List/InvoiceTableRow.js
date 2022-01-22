@@ -5,6 +5,14 @@ import {ActionConstants} from "../../constant/Action";
 export default function TableRowComponent(props) {
     const dispatch = useContext(InvoiceContext);
 
+    const getTotal = (invoice) => {
+        let total =  invoice.cost * invoice.quantity
+        if (invoice.isTaxable) {
+            return total + (total * 0.1)
+        }
+        return total
+    }
+
     const els = []
     props.invoices.forEach(invoice => {
         els.push(
@@ -16,7 +24,7 @@ export default function TableRowComponent(props) {
                     <td>{invoice.description}</td>
                     <td>${(invoice.cost).toLocaleString()}</td>
                     <td>{invoice.quantity.toLocaleString()}</td>
-                    <td>${(invoice.cost * invoice.quantity).toLocaleString()}</td>
+                    <td>${(getTotal(invoice)).toLocaleString()}</td>
                 </tr>
             </Fragment>
         )

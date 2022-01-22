@@ -1,0 +1,139 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$wp-rest-app-primary: mat.define-palette(mat.$indigo-palette);
+$wp-rest-app-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$wp-rest-app-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$wp-rest-app-theme: mat.define-light-theme((
+  color: (
+    primary: $wp-rest-app-primary,
+    accent: $wp-rest-app-accent,
+    warn: $wp-rest-app-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($wp-rest-app-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  background: #f2f5f7;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+table.mat-table {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+    td.mat-cell {
+      padding: 0 20px 0 0;
+      &:first-child {
+        padding-left: 20px;
+      }
+    }
+}
+
+tbody {
+  tr {
+    cursor: pointer !important;
+
+
+    &:last-of-type {
+      td {
+        border-bottom: 0;
+      }
+    }
+
+    &:hover {
+      td {
+        background: #eee !important;
+      }
+    }
+  }
+}
+
+.mat-dialog-container {
+  border-radius: 16px !important;
+  .dialog-header {
+    h1 {
+      max-width: 576px;
+      flex-grow: 1;
+    }
+  }
+  .mat-dialog-content {
+    border: 1px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+    padding: 24px;
+    max-width: 600px;
+
+    p {
+      margin: 0 0 22px 0;
+      font-family: "Open Sans", sans-serif;
+      overflow-wrap: break-word;
+    }
+
+    h2 {
+      margin: 15px 0 20px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 26px;
+      font-weight: 300;
+    }
+
+    a {
+      color: #21759b;
+      text-decoration: none;
+      font-weight: normal;
+    }
+
+    img {
+      height: auto;
+      max-width: 100%;
+      vertical-align: bottom;
+      width: 100%;
+    }
+
+    figure {
+      margin: 0 0 1em 0;
+    }
+
+    blockquote {
+      font-family: "Open Sans", sans-serif;
+      background: #f5f5f5;
+      border: 1px solid #dadada;
+      padding: 22px 22px 0;
+      margin: 0;
+      margin-bottom: 22px;
+      overflow-wrap: break-word;
+    }
+
+    cite {
+      display: inline-block;
+      padding-bottom: 22px;
+      font-style: italic;
+    }
+  }
+}

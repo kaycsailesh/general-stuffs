@@ -1,7 +1,8 @@
 import React from 'react';
 import TableRowComponent from "./InvoiceTableRow";
 
-export default function InvoiceTableComponent({total, invoices}) {
+export default function InvoiceTableComponent({total, totalTaxable, invoices}) {
+    console.log(totalTaxable)
     const lists = TableRowComponent({invoices});
 
     return (
@@ -24,8 +25,20 @@ export default function InvoiceTableComponent({total, invoices}) {
             <tr>
                 <td/>
                 <td/>
+                <td>Taxable Total:</td>
+                <td>${(totalTaxable)}</td>
+            </tr>
+            <tr>
+                <td/>
+                <td/>
                 <td>Total:</td>
                 <td>${(total).toLocaleString()}</td>
+            </tr>
+            <tr>
+                <td/>
+                <td/>
+                <td>Total:</td>
+                <td>${(total + totalTaxable).toLocaleString()}</td>
             </tr>
             </tfoot>
         </table>

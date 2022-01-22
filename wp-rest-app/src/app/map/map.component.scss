@@ -1,0 +1,19 @@
+.map-container {
+  display: flex;
+  max-width: 1200px;
+  margin: auto;
+  //height: calc(100vh - 140px);
+  height: 100vh;
+  overflow: hidden;
+}
+.tiles-container {
+  width: 300px;
+  overflow-y: scroll;
+  margin-right: 10px;
+}
+#map {
+  margin-top: 90px;
+  flex-grow: 1;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}

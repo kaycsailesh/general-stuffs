@@ -5,7 +5,7 @@ import {InvoiceContext} from "../../context/InvoiceContext";
 export default function MobileList(props) {
     const dispatch = useContext(InvoiceContext)
     const els = []
-    const {total, invoices} = props
+    const {total, totalTaxable, invoices} = props
 
     invoices.forEach(invoice => {
         els.push(

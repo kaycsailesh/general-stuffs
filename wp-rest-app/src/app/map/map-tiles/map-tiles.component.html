@@ -1,0 +1,9 @@
+<div class="cards">
+  <div class="card" *ngFor="let park of parks" (click)="onCardClick(park)">
+    <img [src]="'assets/Images/'+ park.imageName + '@2x.jpg'" alt="">
+    <div class="card-body">
+      <p class="title">{{park.name}}</p>
+      <p>{{park.city}}, {{park.state}}</p>
+    </div>
+  </div>
+</div>
