@@ -75,3 +75,5 @@ typings/
 # FuseBox cache
 .fusebox/
 *.pack
+wordpress-angular/.idea/workspace.xml
+wordpress-angular/.idea/vcs.xml

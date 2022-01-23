@@ -26,7 +26,7 @@ export class MapService {
     loader.load().then(google => {
       this.google = google
       const el = document.getElementById('map') as HTMLElement
-      this.map = new google.maps.Map(el, {
+      this.map = new this.google.maps.Map(el, {
         center: {
           lat: 0,
           lng: 0
@@ -34,7 +34,7 @@ export class MapService {
         mapTypeControl: false,
         zoom: 4
       });
-      this.bounds = new google.maps.LatLngBounds();
+      this.bounds = new this.google.maps.LatLngBounds();
       this.mapLoaded.next(true)
     })
   }
@@ -59,7 +59,7 @@ export class MapService {
       if (this.infoWindow) {
         this.infoWindow.close()
       }
-      this.infoWindow = new google.maps.InfoWindow({
+      this.infoWindow = new this.google.maps.InfoWindow({
         content: `<p><strong>${park.name}</strong><br/>${park.city}, ${park.state}</p>`,
       });
       this.infoWindow.open(this.map, marker);
@@ -79,7 +79,7 @@ export class MapService {
     }
     const marker = this.markers.find(marker => marker.id === park.id)
     if (marker) {
-      this.infoWindow = new google.maps.InfoWindow({
+      this.infoWindow = new this.google.maps.InfoWindow({
         content: `<p><strong>${park.name}</strong><br/>${park.city}, ${park.state}</p>`,
       });
       this.infoWindow.open(this.map, marker);
